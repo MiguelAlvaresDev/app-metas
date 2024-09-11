@@ -6,8 +6,12 @@ let meta = {
   },
 };
 
-meta.log(meta.value);
+let metas = [
+  meta,
+  {
+    value: "caminhar 20 minutos todos os dias",
+    checked: false,
+  },
+];
 
-const criarMeta = () => {};
-
-function criarMeta() {}
+console.log(metas[1].value);
