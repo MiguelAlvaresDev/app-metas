@@ -1,5 +1,7 @@
 const { select, input, checkbox } = require("@inquirer/prompts");
 
+let mensagem = "Bem vindo ao App de metas";
+
 let meta = {
   value: "Tomar 3l de água por dia",
   checked: false,
@@ -19,6 +21,8 @@ const cadastrarMeta = async () => {
     value: meta,
     checked: false,
   });
+
+  console.log("Meta cadastrada com sucesso");
 };
 
 const listarMetas = async () => {
@@ -98,7 +102,7 @@ const deletarMetas = async () => {
   }
 
   itensADeletar.forEach((item) => {
-    metas.filter((meta) => {
+    metas = metas.filter((meta) => {
       return meta.value != item;
     });
   });
@@ -106,7 +110,17 @@ const deletarMetas = async () => {
   console.log("Meta(s) deletada(s) com sucesso!");
 };
 
-async function start() {
+const mostrarMensagem = () => {
+  console.clear();
+
+  if (mensagem != "") {
+    console.log(mensagem);
+    console.log("");
+    mensagem = " ";
+  }
+};
+
+const start = async () => {
   while (true) {
     const opcao = await select({
       message: "Menu >",
@@ -141,7 +155,6 @@ async function start() {
     switch (opcao) {
       case "cadastrar":
         await cadastrarMeta();
-        console.log(metas);
         break;
       case "listar":
         await listarMetas();
@@ -160,6 +173,6 @@ async function start() {
         return;
     }
   }
-}
+};
 
 start();
